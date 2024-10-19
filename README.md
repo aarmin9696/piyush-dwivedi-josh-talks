@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Here's a README file you can use for your Task Management App, including setup instructions and a description of the approach used for sorting tasks by priority.
 
-## Getting Started
+---
 
-First, run the development server:
+# Task Management App
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Description
+
+The Task Management App is a simple and intuitive application built with Next.js that allows users to create, edit, delete, and manage tasks. Each task can be categorized by priority (high, medium, low) and marked as completed or pending. The app utilizes local storage for task persistence and incorporates a search feature for easy task retrieval.
+
+### Features
+
+- Add new tasks with title, description, and priority.
+- Edit existing tasks.
+- Delete tasks with confirmation prompts.
+- Mark tasks as completed or pending.
+- Search functionality to filter tasks by title.
+- Tasks are visually differentiated by priority with color gradients.
+
+## Setup Instructions
+
+### Prerequisites
+
+- Node.js (>=14.x)
+- npm (Node Package Manager)
+
+### Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone <repository-url>
+   cd task-management-app
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server:**
+
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser and navigate to:**
+
+   ```
+   http://localhost:3000
+   ```
+
+## Code Overview
+
+### Sorting Tasks by Priority
+
+The tasks are sorted by priority using a custom sorting function that assigns a numeric value to each priority level. The sorting order is defined as follows:
+
+- **High**: 1
+- **Medium**: 2
+- **Low**: 3
+
+The sorting logic is implemented in the `sortTasksByPriority` function, which takes an array of tasks and sorts them based on their completion status and priority. Completed tasks are pushed to the bottom of the list.
+
+Here's how the sorting function works:
+
+```javascript
+const sortTasksByPriority = (tasksToSort) => {
+    const priorityOrder = { high: 1, medium: 2, low: 3 };
+    return [...tasksToSort].sort((a, b) => {
+        if (a.completed !== b.completed) {
+            return a.completed ? 1 : -1; // completed tasks go to the bottom
+        }
+        return priorityOrder[a.priority] - priorityOrder[b.priority];
+    });
+};
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+In this function:
+- The tasks are first checked for their completion status. If one task is completed and the other is not, the completed task is moved to the end of the sorted list.
+- If both tasks have the same completion status, they are sorted by their assigned numeric value based on their priority.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+This approach ensures that tasks are displayed in a clear and prioritized manner, enhancing the overall user experience.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Technologies Used
 
-## Learn More
+- **Frontend:** React, Next.js, React-Bootstrap
+- **State Management:** React Hooks
+- **Styling:** Bootstrap
+- **Notifications:** SweetAlert2
+- **Data Persistence:** Local Storage
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Feel free to modify the content as needed to fit your specific requirements or preferences!
