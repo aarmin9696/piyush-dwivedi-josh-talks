@@ -4,6 +4,10 @@ Here's a README file you can use for your Task Management App, including setup i
 
 # Task Management App
 
+## Deployed Link - https://piyush-dwivedi-josh-talks.vercel.app/
+
+## Repo Link - https://github.com/aarmin9696/piyush-dwivedi-josh-talks
+
 ## Description
 
 The Task Management App is a simple and intuitive application built with Next.js that allows users to create, edit, delete, and manage tasks. Each task can be categorized by priority (high, medium, low) and marked as completed or pending. The app utilizes local storage for task persistence and incorporates a search feature for easy task retrieval.
